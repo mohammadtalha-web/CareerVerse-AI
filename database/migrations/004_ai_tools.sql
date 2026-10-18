@@ -1,0 +1,11 @@
+USE careerverse_ai;
+
+CREATE TABLE IF NOT EXISTS ai_tool_usage (
+  user_id BIGINT UNSIGNED NOT NULL,
+  window_started_at DATETIME(3) NOT NULL,
+  request_count SMALLINT UNSIGNED NOT NULL DEFAULT 0,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (user_id),
+  CONSTRAINT ai_tool_usage_user_fk
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+) ENGINE=InnoDB;
